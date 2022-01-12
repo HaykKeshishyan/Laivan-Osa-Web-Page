@@ -1,74 +1,77 @@
 import React from "react";
+import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import Cart from "./components/cart/Cart";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import About from "./components/main/about/About";
+import News from "./components/main/news/News";
+import Shop from "./components/main/shop/Shop";
+import Navbar from "./components/navbar/Navbar";
 
-function App() {
+const App = (props = []) => {
+  const [models, setModels] = React.useState([])
+  const [addedModels, setAddedModels] = React.useState([])
+  const [cartOpend, setCartOpend] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+
+  const addToCart = (obj) => {
+    if (addedModels.find((item) => Number(item.id) === Number(obj.id))) {
+      setAddedModels(prev => prev.filter(item => Number(item.id) !== Number(obj.id)))
+    } else {
+      axios.post('https://61b8b44138f69a0017ce5cd7.mockapi.io/cart', obj)
+      setAddedModels(prev => [...prev, obj])
+    }
+  }
+
+
+  const removeAdded = (id) => {
+    axios.delete(`https://61b8b44138f69a0017ce5cd7.mockapi.io/cart/${id}`)
+    setAddedModels(prev => prev.filter(model => Number(model.id) !== Number(id)))
+  }
+
+
+
+  React.useEffect(() => {
+    async function fetchData() {
+      const cardResponse = await axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/models');     
+      const cartResponse = await axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/cart');
+      
+      setIsLoading(false);
+
+      setAddedModels(cartResponse.data)
+      setModels(cardResponse.data)
+    }
+
+    fetchData();
+  }, []);
+
+
   return (
     <div className="app-wrapper clear">
-      <div className="overlay">
-        <div className="drawer">
-          <h2>Cart</h2>
-          <div className="cart-item d-flex align-center justify-between mb-20">
-            <img className="model-photo mr-20" width={109} height={72} src="/img/Eraz/Eraz2.jpg" alt="Eraz" />
-            <div className="mr-20">
-              <p className="mb-5">Model "Eraz"</p>
-              <b>19000 amd</b>
-            </div>
-            <img className="remove-btn" width={18} height={18} src="/img/remove.png" alt="Model" />
-          </div>
-          <div className="items">
-            <div className="cart-total-block">
-              <ul>
-                <li>
-                  <span>Sum:</span>
-                  <div className="mr-30"></div>
-                  <b>19000 amd</b>
-                </li>
-                <li>
-                  <span>Tax 5%:</span>
-                  <div className="mr-30"></div>
-                  <b>800 amd</b>
-                </li>
-              </ul>
-              <button>Order</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <header className="d-flex justify-between align-center p-40">
-        <div className="d-flex align-center">
-          <img width={47} height={54} src="/img/logo.png" />
-          <div>
-            <h3 className="text-uppercase">Laivan Osa</h3>
-            <p className="opacity-5">Wooden DIY models</p>
-          </div>
-        </div>
-        <ul className="d-flex">
-          <li className="mr-30">
-            <img width={18} height={18} src="/img/shopping-cart.png" />
-            <span>1000 amd</span>
-          </li>
-          <li>
-            <img width={18} height={18} src="/img/user.png" />
-          </li>
-        </ul>
-      </header>
-      <div className="contenet p-40">
-        <div className="d-flex align-center justify-between mb-40">
-          <h1>All Models</h1>
-        </div>
-        <div className="card">
-          <img className="model-photo" width={218} height={145} src="/img/Eraz/Eraz2.jpg" alt="Eraz" />
-          <h5>Model "Eraz"</h5>
-          <div className="d-flex justify-between align-center">
-            <div className="d-flex flex-column">
-              <span>Price:</span>
-              <b>19 000 amd</b>
-            </div>
-            <button className="button">
-              <img width={11} height={11} src="/img/plus.png" alt="Plus" />
-            </button>
-          </div>
-        </div>
-      </div>
+      {cartOpend ? <Cart
+        removeAdded={(id) => removeAdded(id)}
+        addedModels={addedModels}
+        onClose={() => setCartOpend(false)}
+      /> : null}
+      <Navbar />
+      <Header
+        onOpen={() => setCartOpend(true)}
+      />
+      <Routes>
+        <Route path='About'
+          element={<About />} />
+        <Route path='Shop'
+          element={<Shop
+            addToCart={(obj) => addToCart(obj)}
+            models={models}
+            isLoading={isLoading} />}
+        />
+        <Route path='News'
+          element={<News />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,106 @@
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+  
+  .drawer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 420px;
+    height: 100%;
+    right: 0;
+    background-color: rgb(212, 212, 212);
+    box-shadow: -10px 4px 24px rgba(0,0,0,0.1);
+    padding: 30px;
+  
+    .items {
+      flex: 1;
+      overflow: auto;
+      margin-bottom: 40px;
+    }
+  
+    h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+  }
+  
+  .cartItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 20px;
+    overflow: hidden;
+  
+    p {
+      font-size: 16px;
+    }
+  
+    b {
+      font-size: 14px;
+    }
+    
+    .removeBtn {
+      opacity: 0.5;
+      &:hover {
+          opacity: 1;
+      }
+    }
+  }
+  
+  .cartTotalBlock {
+    ul {
+      display: block;
+      margin-bottom: 40px !important;
+      li {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 20px;
+  
+        div {
+          flex: 1;
+          height: 1px;
+          border-bottom: 1px dashed rgb(94, 94, 94);
+          position: relative;
+          top: -4px;
+          left: +15px;
+        }
+      }
+    }
+    
+    button {
+      width: 100%;
+      height: 55px;
+      background: rgb(79, 218, 102);
+      border-radius: 18px;
+      border: 0;
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    
+    &:hover {
+      background: lighten($color: rgb(79, 218, 102), $amount: 5%);
+    }
+  
+    &:active {
+      background: darken($color: rgb(79, 218, 102), $amount: 5%);
+    }
+ }
+}
+
+.removeBtn {
+  opacity: 0.5;
+  &:hover {
+      opacity: 1;
+  }
+}

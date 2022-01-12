@@ -3,11 +3,32 @@ import ReactDOM from 'react-dom';
 import 'macro-css'
 import './index.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import store from './components/store/State.js';
 
 ReactDOM.render(
-    <App />,
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
-reportWebVitals();
+
+
+
+
+
+// export let render = (state) => {
+//   ReactDOM.render(
+//     <BrowserRouter>
+//       <App state={state} 
+//            dispatch={store.dispatch.bind(store)} />
+//     </BrowserRouter>,
+//     document.getElementById('root')
+//   );
+// }
+
+
+// render(store.getState());
+
+// store.subscribe(render)
