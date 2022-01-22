@@ -8,6 +8,7 @@ import About from "./components/main/about/About";
 import News from "./components/main/news/News";
 import Shop from "./components/main/shop/Shop";
 import Navbar from "./components/navbar/Navbar";
+import Orders from "./components/main/orders/Orders";
 
 export const AppContext = React.createContext({})
 
@@ -16,6 +17,7 @@ const App = (props = []) => {
   const [addedModels, setAddedModels] = React.useState([])
   const [cartOpend, setCartOpend] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
+  const totalPrice = addedModels.reduce ((sum,  obj) => obj.price + sum, 0)
 
 
   const addToCart = (obj) => {
@@ -27,24 +29,10 @@ const App = (props = []) => {
     }
   }
 
-
   const removeAdded = (id) => {
     axios.delete(`https://61b8b44138f69a0017ce5cd7.mockapi.io/cart/${id}`)
     setAddedModels(prev => prev.filter(model => Number(model.id) !== Number(id)))
   }
-
-  const sum = () => {
-    let totalPrice = addedModels.map(card => card.price)
-    let total = 0
-    for(let i=0; i < totalPrice.length; i++) {
-      total += totalPrice[i]
-    }
-    return total
-  }
-  
-  const price = sum()
-
-
 
   React.useEffect(() => {
     async function fetchData() {
@@ -64,16 +52,17 @@ const App = (props = []) => {
   return (
     <AppContext.Provider value={{ models, addedModels, isLoading, setCartOpend, setAddedModels }}>
       <div className="app-wrapper clear">
-      {cartOpend ? <Cart
-        price = {price}
+      <Cart
+        totalPrice = {totalPrice}
         removeAdded={(id) => removeAdded(id)}
         addedModels={addedModels}
         onClose={() => setCartOpend(false)}
-      /> : null}
+        cartOpend = {cartOpend}
+      />
       <Navbar />
       <Header
         onOpen={() => setCartOpend(true)}
-        price={price}
+        totalPrice={totalPrice}
       />
       <Routes>
         <Route path='About'
@@ -85,6 +74,8 @@ const App = (props = []) => {
         />
         <Route path='News'
           element={<News />} />
+        <Route path='Orders'
+          element={<Orders />} />
       </Routes>
       <Footer />
     </div>

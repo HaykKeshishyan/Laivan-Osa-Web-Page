@@ -1,14 +1,9 @@
 import React from "react";
-import style from './Card.module.scss'
+import style from './OrdersCard.module.scss'
 import ContentLoader from "react-content-loader"
 
-const Card = (props) => {
+const OrdersCard = (props) => {
   const [isAdded, setIsAdded] = React.useState(false)
-
-  const addToCart = () => {
-    setIsAdded(!isAdded);
-    props.addToCart({ id: props.id, model: props.model, price: props.price, picture: props.picture, })
-  }
 
   return (
     <div className={style.card} >
@@ -37,11 +32,6 @@ const Card = (props) => {
               <span>Price</span>
               <b>{props.price} amd</b>
             </div>
-            <img className={style.plus}
-              onClick={addToCart}
-              width={16} height={16}
-              src={isAdded ? "/img/mark-btn.svg" : "/img/add-btn.svg"}
-              alt="Add" />
           </div>
         </>}
 
@@ -49,4 +39,4 @@ const Card = (props) => {
   )
 }
 
-export default Card;
+export default OrdersCard;

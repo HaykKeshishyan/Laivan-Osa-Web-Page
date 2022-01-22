@@ -15,7 +15,7 @@ function Cart(props) {
   const [isOrderComplete, setIsOrderComplete] = useState(false)
 
   const onClickOrder = async () => {
-    try {
+    // try {
       setLoading(true);
       const { data } = await axios.post('https://61b8b44138f69a0017ce5cd7.mockapi.io/orders', { items: addedModels, });
       setOrderId(data.id);
@@ -26,9 +26,9 @@ function Cart(props) {
         await axios.delete('https://61b8b44138f69a0017ce5cd7.mockapi.io/cart' + item.id);
         await delay();
       }
-    } catch (error) {
-      alert('Feiled to create order');
-    }
+    // } catch (error) {
+    //   alert('Feiled to create order');
+    // }
     setLoading(false);
   };
 
@@ -42,7 +42,7 @@ function Cart(props) {
   />)
 
   return (
-    <div className={style.overlay}>
+    <div className={`${style.overlay} ${props.cartOpend ? style.overlayVisible : ''}`}>
       <div className={style.drawer}>
         <h2 className="d-flex justify-between mb-30 flex">
           Cart <img onClick={props.onClose} className="cu-p" width={16} height={16} src="/img/close-btn.svg" />
@@ -57,12 +57,12 @@ function Cart(props) {
                 <li>
                   <span>Sum:</span>
                   <div className="mr-30"></div>
-                  <b>{props.price}</b>
+                  <b>{props.totalPrice}</b>
                 </li>
                 <li>
                   <span>Tax 5%:</span>
                   <div className="mr-30"></div>
-                  <b>{props.price * 0.1}</b>
+                  <b>{props.totalPrice * 0.1}</b>
                 </li>
               </ul>
               <button disabled={loading} className={style.button} onClick={onClickOrder} >Order</button>
