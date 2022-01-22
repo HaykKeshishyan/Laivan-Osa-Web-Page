@@ -89,6 +89,11 @@
   cursor: pointer;
   transition: 0.2s ease-in-out;
 
+&:disabled {
+  background-color: #bebebe;
+  cursor: default;
+}
+
 &:hover {
   background: lighten($color: rgb(79, 218, 102), $amount: 5%);
 }

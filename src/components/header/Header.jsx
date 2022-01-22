@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import style from './Header.module.scss'
 
 function Header(props) {
@@ -18,7 +17,7 @@ function Header(props) {
                 <li onClick={props.onOpen} className="mr-30 cu-p">
                         <img width={18} height={18} 
                         src="/img/shopping-cart.png" />
-                    <span>1000 amd</span>
+                    <span>{props.price}</span>
                 </li>
                 <li>
                     <img width={18} height={18} 

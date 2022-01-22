@@ -9,6 +9,8 @@ import News from "./components/main/news/News";
 import Shop from "./components/main/shop/Shop";
 import Navbar from "./components/navbar/Navbar";
 
+export const AppContext = React.createContext({})
+
 const App = (props = []) => {
   const [models, setModels] = React.useState([])
   const [addedModels, setAddedModels] = React.useState([])
@@ -31,6 +33,17 @@ const App = (props = []) => {
     setAddedModels(prev => prev.filter(model => Number(model.id) !== Number(id)))
   }
 
+  const sum = () => {
+    let totalPrice = addedModels.map(card => card.price)
+    let total = 0
+    for(let i=0; i < totalPrice.length; i++) {
+      total += totalPrice[i]
+    }
+    return total
+  }
+  
+  const price = sum()
+
 
 
   React.useEffect(() => {
@@ -49,8 +62,10 @@ const App = (props = []) => {
 
 
   return (
-    <div className="app-wrapper clear">
+    <AppContext.Provider value={{ models, addedModels, isLoading, setCartOpend, setAddedModels }}>
+      <div className="app-wrapper clear">
       {cartOpend ? <Cart
+        price = {price}
         removeAdded={(id) => removeAdded(id)}
         addedModels={addedModels}
         onClose={() => setCartOpend(false)}
@@ -58,6 +73,7 @@ const App = (props = []) => {
       <Navbar />
       <Header
         onOpen={() => setCartOpend(true)}
+        price={price}
       />
       <Routes>
         <Route path='About'
@@ -65,14 +81,14 @@ const App = (props = []) => {
         <Route path='Shop'
           element={<Shop
             addToCart={(obj) => addToCart(obj)}
-            models={models}
-            isLoading={isLoading} />}
+             />}
         />
         <Route path='News'
           element={<News />} />
       </Routes>
       <Footer />
     </div>
+    </AppContext.Provider>
   );
 }
 

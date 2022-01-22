@@ -22,7 +22,7 @@ const Card = (props) => {
             speed={2}
             width={278}
             height={241}
-            viewBox="0 0 278 307"
+            viewBox="0 0 278 240"
             backgroundColor="#f3f3f3"
             foregroundColor="#ecebeb"
           >
