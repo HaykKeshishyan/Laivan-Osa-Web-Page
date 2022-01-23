@@ -17,6 +17,7 @@ const Shop = (props) => {
       picture={card.picture}
       model={card.model}
       price={card.price}
+      about={card.about}
       loading={isLoading}
     />))
   }

@@ -7,7 +7,7 @@ const Cartitem = (props) => {
     <div>
       <img className={style.removeBtn} onClick={() => props.removeAdded(props.id)} width={18} height={18} src="/img/remove.png" alt="remove" />
     </div>
-      <img className="model-photo mr-20" width={109} height={72} src={props.picture} alt="model" />
+      <img className="model-photo mr-20" width={109} height={72} src={props.picture[0]} alt="model" />
       <div className="mr-20">
         <p className="mb-5">Model {props.model}</p>
         <b>{props.price} amd</b>

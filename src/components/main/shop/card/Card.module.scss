@@ -1,12 +1,11 @@
 .card {
     border: 1px solid rgb(212, 212, 212);
     padding: 30px;
-    width: 278px;
+    width: 100%;
     border-radius: 40px;
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
   
     .modelPhoto {
-    width: 100%;
     cursor: pointer;
   }
   .plus {
@@ -22,12 +21,37 @@
     }
   
     b {
-      font-size: 13px;
+      font-size: 17px;
     }
   
-    h5 {
+    a {
       font-weight: 400;
       font-size: 14px;
+    }
+
+    .cardContent{
+        display: grid;
+        gap: 28px;
+        grid-template-columns: repeat(auto-fill, minmax(300px,1fr))
+    }
+
+    .photos{
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(300px,1fr))
+    }
+
+    .modelName{
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about{
+      font-size: 13px;
+      text-align: left;
+      width: 100%;
     }
 
     .button {

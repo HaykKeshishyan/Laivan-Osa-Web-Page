@@ -10,6 +10,7 @@ const Card = (props) => {
     props.addToCart({ id: props.id, model: props.model, price: props.price, picture: props.picture, })
   }
 
+
   return (
     <div className={style.card} >
       {props.loading ?
@@ -30,16 +31,41 @@ const Card = (props) => {
           </ContentLoader>
         </> :
         <>
-          <img className={style.modelPhoto} width={218} height={145} src={props.picture} alt="model" />
-          <h5>Model: {props.model}</h5>
+        <div className={style.cardContent}>
+          <div className={style.photos}>
+            <img className={style.modelPhoto} width={357} height={240} src={props.picture[0]} alt="model" />
+            <div>
+              <img className={style.modelPhoto} width={109} height={72} src={props.picture[1]} alt="model" />
+              <img className={style.modelPhoto} width={109} height={72} src={props.picture[2]} alt="model" />
+              <img className={style.modelPhoto} width={109} height={72} src={props.picture[3]} alt="model" />
+            </div>
+          </div>
+          <div>
+            <a className={style.modelName}>Model: {props.model}</a>
+            <p className={style.about}>
+              {props.about[0]}
+            </p>
+            <p className={style.about}>
+              The contents of the box including:  plywood, sandpaper, toothpicks, paraffin wax, thread
+            </p>
+          </div>
+        </div>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
               <span>Price</span>
               <b>{props.price} amd</b>
             </div>
+            <div className="d-flex align-center">
+              <img src="/img/resize.png" width={25} height={25} alt="size" />
+              {props.about[1]}
+            </div>
+            <div className="d-flex align-center">
+              <img src="/img/detail.png" width={30} height={30} alt="size" />
+              {props.about[2]}
+            </div>
             <img className={style.plus}
               onClick={addToCart}
-              width={16} height={16}
+              width={18} height={18}
               src={isAdded ? "/img/mark-btn.svg" : "/img/add-btn.svg"}
               alt="Add" />
           </div>
@@ -50,3 +76,5 @@ const Card = (props) => {
 }
 
 export default Card;
+
+

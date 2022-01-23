@@ -19,7 +19,6 @@ const App = (props = []) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const totalPrice = addedModels.reduce ((sum,  obj) => obj.price + sum, 0)
 
-
   const addToCart = (obj) => {
     if (addedModels.find((item) => Number(item.id) === Number(obj.id))) {
       setAddedModels(prev => prev.filter(item => Number(item.id) !== Number(obj.id)))
