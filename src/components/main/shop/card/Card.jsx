@@ -6,13 +6,19 @@ const Card = (props) => {
   const [isAdded, setIsAdded] = React.useState(false)
 
   const addToCart = () => {
-    setIsAdded(!isAdded);
+    setIsAdded(true);
     props.addToCart({ id: props.id, model: props.model, price: props.price, picture: props.picture, })
+    setTimeout(() => {
+      setIsAdded(false)
+    }, 2000)
   }
 
 
   return (
     <div className={style.card} >
+      <div className={`${style.overlay} ${isAdded ? style.overlayVisible : ''}`} >
+        <img className={style.drawer} src="/img/mark.png" alt="mark" width={300} height={300} />
+    </div>
       {props.loading ?
         <>
           <ContentLoader
@@ -66,7 +72,7 @@ const Card = (props) => {
             <img className={style.plus}
               onClick={addToCart}
               width={18} height={18}
-              src={isAdded ? "/img/mark-btn.svg" : "/img/add-btn.svg"}
+              src="/img/add-btn.svg"
               alt="Add" />
           </div>
         </>}
