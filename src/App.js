@@ -64,7 +64,7 @@ const App = (props = []) => {
         totalPrice={totalPrice}
       />
       <Routes>
-        <Route path='About'
+        <Route path=''
           element={<About />} />
         <Route path='Shop'
           element={<Shop

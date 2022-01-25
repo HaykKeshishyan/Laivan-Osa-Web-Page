@@ -1,8 +1,9 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: blanchedalmond;
-    border-radius: 20 px;
-    padding: 20px 50px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  background-color: blanchedalmond;
+  padding: 20px 50px;
+  border-radius: 20px;
+}

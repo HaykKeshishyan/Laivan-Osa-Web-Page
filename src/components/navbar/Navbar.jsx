@@ -8,7 +8,7 @@ function Navbar(props) {
             <ul className="d-flex">
                 
                 <li className="p-10">
-                    <NavLink to="/About">About</NavLink>
+                    <NavLink to="/">About</NavLink>
                 </li>
                 <li className="p-10">
                 <NavLink to="/Shop">Online Shop</NavLink>
