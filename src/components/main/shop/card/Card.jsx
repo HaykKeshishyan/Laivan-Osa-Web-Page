@@ -22,18 +22,25 @@ const Card = (props) => {
       {props.loading ?
         <>
           <ContentLoader
-            speed={2}
-            width={278}
-            height={241}
-            viewBox="0 0 278 240"
+            speed={1}
+            width={940}
+            height={413}
+            viewBox="0 0 940 413"
             backgroundColor="#f3f3f3"
             foregroundColor="#ecebeb"
+            {...props}
           >
-            <rect x="0" y="-1" rx="0" ry="0" width="218" height="145" />
-            <rect x="0" y="168" rx="0" ry="0" width="120" height="15" />
-            <rect x="0" y="205" rx="0" ry="0" width="50" height="15" />
-            <rect x="0" y="219" rx="0" ry="0" width="73" height="15" />
-            <rect x="202" y="219" rx="0" ry="0" width="16" height="16" />
+            <rect x="0" y="275" rx="0" ry="0" width="109" height="72" /> 
+            <rect x="125" y="275" rx="0" ry="0" width="109" height="72" /> 
+            <rect x="250" y="275" rx="0" ry="0" width="109" height="72" /> 
+            <rect x="0" y="0" rx="0" ry="0" width="358" height="240" /> 
+            <rect x="630" y="0" rx="0" ry="0" width="150" height="23" /> 
+            <rect x="485" y="45" rx="0" ry="0" width="454" height="310" /> 
+            <rect x="0" y="375" rx="0" ry="0" width="50" height="16" /> 
+            <rect x="0" y="391" rx="0" ry="0" width="96" height="20" /> 
+            <rect x="295" y="380" rx="0" ry="0" width="159" height="25" /> 
+            <rect x="625" y="380" rx="0" ry="0" width="100" height="25" /> 
+            <rect x="905" y="385" rx="0" ry="0" width="20" height="20" />
           </ContentLoader>
         </> :
         <>

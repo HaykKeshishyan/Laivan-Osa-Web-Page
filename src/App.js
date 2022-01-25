@@ -35,13 +35,18 @@ const App = (props = []) => {
 
   React.useEffect(() => {
     async function fetchData() {
-      const cardResponse = await axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/models');     
-      const cartResponse = await axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/cart');
-      
-      setIsLoading(false);
+      try{
+        const cardResponse = await axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/models');     
+        const cartResponse = await axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/cart');
+        
+        setIsLoading(false);
 
-      setAddedModels(cartResponse.data)
-      setModels(cardResponse.data)
+        setAddedModels(cartResponse.data)
+        setModels(cardResponse.data)
+      }catch (error){
+        alert('Sorry, there is some error ;(')
+        console.error(error)
+      }
     }
 
     fetchData();
