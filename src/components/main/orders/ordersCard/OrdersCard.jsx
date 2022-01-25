@@ -25,7 +25,7 @@ const OrdersCard = (props) => {
           </ContentLoader>
         </> :
         <>
-          <img className={style.modelPhoto} width={218} height={145} src={props.picture} alt="model" />
+          <img className={style.modelPhoto} width={218} height={145} src={props.picture[0]} alt="model" />
           <h5>Model: {props.model}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">

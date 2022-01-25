@@ -21,7 +21,7 @@ function Header(props) {
                     <span>{props.totalPrice}</span>
                 </li>
                 <li>
-                    <NavLink to="/Orders">
+                    <NavLink to="/orders">
                         <img width={18} height={18} 
                         src="/img/user.png" />
                     </NavLink>

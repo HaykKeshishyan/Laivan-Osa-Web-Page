@@ -11,10 +11,10 @@ function Navbar(props) {
                     <NavLink to="/">About</NavLink>
                 </li>
                 <li className="p-10">
-                <NavLink to="/Shop">Online Shop</NavLink>
+                <NavLink to="/shop">Online Shop</NavLink>
                 </li>
                 <li className="p-10">
-                <NavLink to="/News">News</NavLink>
+                <NavLink to="/news">News</NavLink>
                 </li>
             </ul>
             <img width={191} height={34} src="/img/laivanosa.png"/>

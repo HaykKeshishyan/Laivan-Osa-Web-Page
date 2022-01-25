@@ -52,6 +52,16 @@ const App = (props = []) => {
     fetchData();
   }, []);
 
+const handleToggle = React.useCallback(() => {
+  if(!cartOpend) {
+    document.body.style.overflow = 'hidden'
+    setCartOpend(true)
+    return;
+  } 
+  document.body.style.overflow = 'auto'
+  setCartOpend(false) 
+
+},[cartOpend])
 
   return (
     <AppContext.Provider value={{ models, addedModels, isLoading, setCartOpend, setAddedModels }}>
@@ -60,25 +70,25 @@ const App = (props = []) => {
         totalPrice = {totalPrice}
         removeAdded={(id) => removeAdded(id)}
         addedModels={addedModels}
-        onClose={() => setCartOpend(false)}
+        onClose={() => handleToggle()}
         cartOpend = {cartOpend}
       />
       <Navbar />
       <Header
-        onOpen={() => setCartOpend(true)}
+        onOpen={() => handleToggle()}
         totalPrice={totalPrice}
       />
       <Routes>
         <Route path=''
           element={<About />} />
-        <Route path='Shop'
+        <Route path='shop'
           element={<Shop
             addToCart={(obj) => addToCart(obj)}
              />}
         />
-        <Route path='News'
+        <Route path='news'
           element={<News />} />
-        <Route path='Orders'
+        <Route path='orders'
           element={<Orders />} />
       </Routes>
       <Footer />

@@ -3,12 +3,13 @@ import style from './Shop.module.scss'
 import { AppContext } from "../../../App";
 import Card from "./card/Card";
 
+const anasunBanEmMtaceBaycXuyEgoEsInchaGrac = [ 1,2,3,4,5]
+
 const Shop = (props) => {
   const { models, isLoading} = React.useContext(AppContext)
 
-
   const cardElement = () => {
-    return (isLoading ? [...Array(5)].map(card => <Card
+    return (isLoading ? anasunBanEmMtaceBaycXuyEgoEsInchaGrac.map(card => <Card key={card}
       loading={isLoading}
     />) : models.map(card => <Card
       key={card.model}

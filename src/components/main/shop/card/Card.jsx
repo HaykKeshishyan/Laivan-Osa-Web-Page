@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader"
 
 const Card = (props) => {
   const [isAdded, setIsAdded] = React.useState(false)
-
+  const [image, setImage] = React.useState(props.picture ? props.picture[0] : "")
   const addToCart = () => {
     setIsAdded(true);
     props.addToCart({ id: props.id, model: props.model, price: props.price, picture: props.picture, })
@@ -46,11 +46,14 @@ const Card = (props) => {
         <>
         <div className={style.cardContent}>
           <div className={style.photos}>
-            <img className={style.modelPhoto} width={357} height={240} src={props.picture[0]} alt="model" />
+            <img className={style.modelPhoto} width={357} height={240} src={image} alt="model" />
             <div>
-              <img className={style.modelPhoto} width={109} height={72} src={props.picture[1]} alt="model" />
-              <img className={style.modelPhoto} width={109} height={72} src={props.picture[2]} alt="model" />
-              <img className={style.modelPhoto} width={109} height={72} src={props.picture[3]} alt="model" />
+              {props.picture.map((e) => {
+                return (
+              <img key={e} className={style.modelPhoto} width={109} height={72} src={e} alt="model" onClick={() => setImage(e)} />
+
+                )
+              })}
             </div>
           </div>
           <div>

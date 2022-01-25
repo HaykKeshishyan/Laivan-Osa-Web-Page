@@ -11,8 +11,8 @@ const Orders = () => {
     React.useEffect(() => {
         (async () => {
           try{
-            const fetchData = await  axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/orders')
-            setOrders(fetchData.data.map((obj) => obj.items).flat())
+            const {data= []} = await  axios.get('https://61b8b44138f69a0017ce5cd7.mockapi.io/orders');
+            setOrders(data.map((obj) => obj.items).flat())
           } catch (error) {
             alert('Sorry, there is some error ;(')
             console.error(error);
