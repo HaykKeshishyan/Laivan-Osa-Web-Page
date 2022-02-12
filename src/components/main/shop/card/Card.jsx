@@ -18,7 +18,7 @@ const Card = (props) => {
     <div className={style.card} >
       <div className={`${style.overlay} ${isAdded ? style.overlayVisible : ''}`} >
         <img className={style.drawer} src="/img/mark.png" alt="mark" width={300} height={300} />
-    </div>
+      </div>
       {props.loading ?
         <>
           <ContentLoader

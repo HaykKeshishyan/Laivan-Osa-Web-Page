@@ -52,14 +52,11 @@ const App = (props = []) => {
     fetchData();
   }, []);
 
-const handleToggle = React.useCallback(() => {
-  if(!cartOpend) {
-    document.body.style.overflow = 'hidden'
-    setCartOpend(true)
-    return;
-  } 
-  document.body.style.overflow = 'auto'
-  setCartOpend(false) 
+
+const handleToggle = React.useCallback((style) => {
+    document.body.style.overflow = style
+    setCartOpend(!cartOpend)
+ 
 
 },[cartOpend])
 
@@ -70,12 +67,12 @@ const handleToggle = React.useCallback(() => {
         totalPrice = {totalPrice}
         removeAdded={(id) => removeAdded(id)}
         addedModels={addedModels}
-        onClose={() => handleToggle()}
+        onClose={() => handleToggle("auto")}
         cartOpend = {cartOpend}
       />
       <Navbar />
       <Header
-        onOpen={() => handleToggle()}
+        onOpen={() => handleToggle("hidden")}
         totalPrice={totalPrice}
       />
       <Routes>
